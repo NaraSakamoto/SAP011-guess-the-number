@@ -10,10 +10,17 @@ import java.util.Random;
 
 public class GuessTheNumberGame {
 
-    private static final Random random = new Random();
-    private static final int targetNumber = random.nextInt(100) + 1;
+    private Random random;
+    private int targetNumber;
+
+    public GuessTheNumberGame(Random random) {
+        this.random = random;
+        this.targetNumber = random.nextInt(100) + 1;
+    }
 
     public static void main(String[] args) {
+        GuessTheNumberGame game = new GuessTheNumberGame(new Random());
+
         ArrayList<Player> players = new ArrayList<>();
         players.add(new ComputerPlayer("Computer"));
         players.add(new HumanPlayer("Naroka"));
@@ -23,7 +30,7 @@ public class GuessTheNumberGame {
         Player player;
         while(true){
             player = players.get(attempts % 2);
-            result = checkGuess(player);
+            result = game.checkGuess(player);
 
             if(result.equalsIgnoreCase("Congratulations!")) {
                 System.out.printf("Congratulations %s, you won!!%n", player.getName());
@@ -38,7 +45,7 @@ public class GuessTheNumberGame {
         }
     }
 
-    private static String checkGuess(Player player) {
+    public String checkGuess(Player player) {
         int guess = player.makeGuess();
 
         if(guess > targetNumber){

@@ -8,7 +8,7 @@ public class ComputerPlayer extends Player {
         super(name);
     }
 
-    private static final Random random = new Random();
+    private Random random = new Random();
 
     @Override
     public int makeGuess() {
@@ -23,7 +23,7 @@ public class ComputerPlayer extends Player {
         return guess;
     }
 
-//    private int generateRandomNumber(){
-//        return
-//    }
+    public void setRandom(Random random) {
+        this.random = random;
+    }
 }
